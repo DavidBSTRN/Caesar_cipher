@@ -44,7 +44,7 @@ def similarity_score(message):
 
     sim_score = 0
 
-    for char in text_frequency:
+    for char in text_letter_frequency:
         multiply = text_letter_frequency[char] * lang_letter_frequency[char]
         sim_score += multiply
 
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
     lets_continue = True
     while lets_continue:
-        state = input("Type 'en' to encode the message or 'de' to decode the message:\n")
+        state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n")
 
         if state == "en":
             msg_to_encode = input("Enter the message:\n").upper()
@@ -91,13 +91,13 @@ if __name__ == "__main__":
             try:
                 key = int(input("Enter the key:\n"))
                 print(f"Your encrypt message is: {encrypt(msg_to_encode, key)}")
-                lets_continue = False
+                state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n")
             except ValueError:
                 print("Key must be integer!")
 
         if state == "de":
 
-            language = input("type 'CZ' or 'EN' for choosing language")
+            language = input("type 'CZ' or 'EN' for choosing language\n")
             if language == "EN":
                 lang_letter_frequency = english_letter_frequencies
             elif language == "CZ":
@@ -106,20 +106,10 @@ if __name__ == "__main__":
             msg_to_decode = input("Enter the message:\n").upper()
             check_message(msg_to_decode)
 
-            text_frequency = frequency_analysis(msg_to_decode)
-            most_frq = max(text_frequency, key = text_frequency.get)
-
-            index = alphabet.index(most_frq)
-
-            print(f"Encode message is: {decode(msg_to_decode, index)}")
-
-            state = input("If the encode message is incorrect, type 'again' for better frequency analysis,\n"
-                          "otherwise type 'ok'." )
-
-        if state == "again":
             decode_key = sim_score_decode(msg_to_decode)
             print(f"Encode message is: {decode(msg_to_decode, decode_key)}")
-            lets_continue = False
 
-        if state == "ok":
+            state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n")
+
+        if state == "end":
             lets_continue = False
