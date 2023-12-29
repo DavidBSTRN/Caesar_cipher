@@ -83,19 +83,19 @@ if __name__ == "__main__":
 
     lets_continue = True
     while lets_continue:
-        state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n")
+        state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n").upper()
 
-        if state == "en":
+        if state == "EN":
             msg_to_encode = input("Enter the message:\n").upper()
             check_message(msg_to_encode)
             try:
                 key = int(input("Enter the key:\n"))
                 print(f"Your encrypt message is: {encrypt(msg_to_encode, key)}")
-                state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n")
+                state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n").upper()
             except ValueError:
                 print("Key must be integer!")
 
-        if state == "de":
+        if state == "DE":
 
             language = input("type 'CZ' or 'EN' for choosing language\n")
             if language == "EN":
@@ -109,7 +109,7 @@ if __name__ == "__main__":
             decode_key = sim_score_decode(msg_to_decode)
             print(f"Encode message is: {decode(msg_to_decode, decode_key)}")
 
-            state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n")
+            state = input("Type 'en' to encode the message, 'de' to decode the message or 'end' for end program:\n").upper()
 
-        if state == "end":
+        if state == "END":
             lets_continue = False
