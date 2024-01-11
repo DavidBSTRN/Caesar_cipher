@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
         if state == "DE":
 
-            language = input("type 'CZ' or 'EN' for choosing language\n")
+            language = input("type 'CZ' or 'EN' for choosing language\n").upper()
             if language == "EN":
                 lang_letter_frequency = english_letter_frequencies
             elif language == "CZ":
